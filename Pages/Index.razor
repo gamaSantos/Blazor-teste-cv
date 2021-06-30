@@ -1,0 +1,90 @@
+﻿@page "/"
+
+@if (cv == null)
+{
+    <h1>Loading...</h1>
+}
+else
+{
+    <div class="row main-panel">
+        <div class="col-8">
+            <div class="row">
+                <span class="name">@(person.Name)</span>
+                <span class="subtext">@(person.Description)</span>
+            </div>
+
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <span>@(person.Address.Street), @(person.Address.Number)</span><br />
+                <span>@(person.Address.City) - @(person.Address.PostalCode)</span><br />
+                <span>@(person.Age) anos, @(person.MaritalStatus)</span>
+                <span class="fw-bold">
+                    <i class="bi bi-phone-fill"></i>
+                    @(person.Contact.PhoneNumber)
+                </span>
+                <span class="fw-bold">
+                    <i class="bi bi-envelope-open-fill"></i>
+                    @(person.Contact.Email)
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <span class="subtitle">Experiência Profissional</span>
+            @foreach (var company in cv.Experiences)
+            {
+                <div class="subcontainer">
+
+                    <span class="company-name">@(company.Name)</span>,&nbsp;<span
+                class="subtext">@(company.Role)</span>&nbsp;<br />
+                    <span class="period">
+                        @(company.StartDate.Year) - @(company.ExitDate.HasValue? company.ExitDate.Value.Year : "atual")
+                    </span> <br />
+                    <span class="subtext">@(company.Description)</span>
+                    <br><span class="fw-bold subtext">Stack: </span>
+                    <span class="subtext">@(string.Join(',',company.Technologies))</span>
+                </div>
+            }
+
+            <span class="subtitle">Educação</span>
+            @foreach (var company in cv.Educations)
+            {
+                <div class="subcontainer">
+
+                    <span class="company-name">@(company.Institution)</span>,&nbsp;<span
+                class="subtext">@(company.Course)</span>
+
+                </div>
+            }
+        </div>
+        <div class="col-4">
+            <span class="subtitle">Habilidades</span>
+
+            @foreach (var skill in cv.Skills.OrderBy(x => x.Type))
+            {
+                <div>
+                    <span>@(skill.Name.ToUpper())</span> <br>
+                   
+                    <div class="progress">
+                        <div style="width: @(skill.Grade)%; background-color: var(--accent-color)" class="progress-bar" role="progressbar" 
+                        aria-valuenow="@(skill.Grade)" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+
+@code {
+    Curriculum cv;
+    Person person;
+    protected override void OnInitialized()
+    {
+        cv = Builder.Build();
+        person = cv.Owner;
+
+    }
+}

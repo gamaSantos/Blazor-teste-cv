@@ -1,0 +1,65 @@
+
+:root{
+    --dark-gray:#33333d; /*dark gray*/
+    --light-gray:#f8f9fa; /*light gray*/
+
+    --dark-gray:#f8f9fa; /*dark gray*/
+    --light-gray:#33333d; /*light gray*/
+
+    
+    --accent-color:#059DC0; /*blue grotto*/
+}
+
+html{
+    background-color: var(--dark-gray);
+}
+body{
+    height: 100vh;
+    font-family: 'Fira Code';
+    font-size: 12pt;
+    color: var(--dark-gray);
+}
+
+.root{
+    background-color: var(--dark-gray);
+    height: 100%;
+}
+
+.main-container{
+    background-color: var(--light-gray);;
+    height: 100%;
+}
+
+.main-panel{
+    background-color: var(--accent-color);
+    padding: 20px 0px 10px;
+}
+
+.subtitle{
+    color: var(--accent-color);
+    display: flex;
+    margin: 10px 0px;
+    font-size: 16pt;
+    text-transform: capitalize;    
+}
+
+.name{
+    font-size: 36pt;
+    padding-left: 25px;
+}
+
+
+.subcontainer{
+    margin-top: 30px;
+}
+.period{
+    font-size: 10pt;
+    font-style: italic;
+}
+.company-name{
+    font-weight: bold;
+    font-size: 12pt;
+}
+.subtext{
+    font-size: 10pt;
+}
