@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace dinamico
+namespace Curriculum.Domain
 {
     public class Curriculum
     {

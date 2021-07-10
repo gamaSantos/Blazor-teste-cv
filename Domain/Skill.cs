@@ -1,4 +1,4 @@
-namespace dinamico
+namespace Curriculum.Domain
 {
     public class Skill
     {

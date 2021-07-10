@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace dinamico
+namespace Curriculum.Domain
 {
     public static class Builder
     {
