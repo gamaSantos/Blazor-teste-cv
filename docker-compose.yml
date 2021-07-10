@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+    api:
+        build: /api
+        ports: 
+            - 6000:80
+    web:
+        build: /frontend
+        ports: 
+            - 6001:80
