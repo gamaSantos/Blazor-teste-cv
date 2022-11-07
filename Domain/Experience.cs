@@ -6,7 +6,7 @@ namespace Curriculum.Domain
     {
         public string Name { get; set; }
         public Description Role { get; set; }
-        public string Description { get; set; }
+        public Description Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? ExitDate { get; set; }
         public string[] Activies { get; set; }
