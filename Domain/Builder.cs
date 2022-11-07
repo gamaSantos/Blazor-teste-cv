@@ -28,12 +28,14 @@ namespace Curriculum.Domain
 
         private static Person GetPerson()
         {
+            var desc = "Sou um desenvolvedor de sistemas com experiência principalmente na plataforma .net, mas tambem atuo como  fullstack. Atualmente estudando rust e grpc no tempo livre =)";
+            var descEng = "I'm a software developer with solid experience in the .net platform, but I can also work as a fullstack. Currently studying rust and grpc in my spare time =)";
             return new Person
             {
                 Name = "Pedro Gama",
                 Birthdate = new DateTime(1993, 06, 07),
-                Description = "Sou um desenvolvedor de sistemas com experiência principalmente na plataforma .net, posso atuar como fullstack. Atualmente estudando containers e unity3d no tempo livre =)",
-                MaritalStatus = "Casado",
+                Description = new Description(desc, descEng),
+                MaritalStatus = new Description("casado", "married"),
                 Address = new Address
                 {
                     City = "São Paulo, SP",
@@ -41,12 +43,21 @@ namespace Curriculum.Domain
                     PostalCode = "04824-010",
                     Street = "Av. do Arvoreiro"
                 },
-                Contact = new ContactInformation
+                Contact = CreateContactInfo()
+            };
+
+            static ContactInformation CreateContactInfo()
+            {
+                var contactInfo = new ContactInformation
                 {
                     Email = "pedro.gama@ymail.com",
                     PhoneNumber = "(11) 95476-5946"
-                }
-            };
+                };
+
+                contactInfo.AddLink(new ContactInformation.ExternalLink("Github", "https://github.com/gamaSantos"));
+                contactInfo.AddLink(new ContactInformation.ExternalLink("LinkedIn", "https://www.linkedin.com/in/pedro-gama-6b278662"));
+                return contactInfo;
+            }
         }
 
         private static List<Experience> GetExperiences()
@@ -55,11 +66,12 @@ namespace Curriculum.Domain
             experiences.Add(new Experience
             {
                 Name = "Confitec",
-                Role = "Desenvolvedor Fullstack Sênior",
+                Role = new Description("Desenvolvedor Fullstack Sênior", "Senior Fullstack developer"),
                 StartDate = new DateTime(2020, 03, 01),
-                ExitDate = null,
-                Description = 
+                ExitDate = new DateTime(2021, 07, 01),
+                Description = new Description(
 @"Empresa voltada ao mercado de seguros. Tive a oportunidade de me familiarizar e aperfeiçoar em diversos padrões de mercado como DDD, CQRS e mediators além de obter mais experiencia com sistemas distribuidos",
+@"Company is focused in the insurance market. Had the opportunity to improve in many patterns like CQRS, mediator and DDD whiling acquired experience with distributed systems."),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento no produto da empresa.",
                     "Realizar integrações entre sistemas.",
@@ -74,10 +86,14 @@ namespace Curriculum.Domain
             experiences.Add(new Experience
             {
                 Name = "Tabmedia",
-                Role = "Desenvolvedor .Net Sênior",
+                Role = new Description(
+                    "Desenvolvedor .Net Sênior",
+                    "Senior .Net developer"),
                 StartDate = new DateTime(2016, 03, 01),
                 ExitDate = new DateTime(2020, 03, 01),
-                Description = "Trabalhei em 2 projetos para a indústria farmacêeutica, em um deles pude trabalhar desde a concepção e adquirir maior experiência com DDD e arquitetura de software. Passamos por uma transição para o modelo ágil o que me proporcionou uma boa experiência com scrum.",
+                Description = new Description(
+                    "Trabalhei em 2 projetos para a indústria farmacêutica, em um deles pude trabalhar desde a concepção e adquirir maior experiência com DDD e arquitetura de software. Passamos por uma transição para o modelo ágil o que me proporcionou uma boa experiência com scrum.",
+                    "I Worked in two projects to the pharma industry, in the latest, had the opportunity to create the backend from scratch with the tech lead. We transition to a agile method in the company, what gave me solid understing of the culture"),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento no produto da empresa.",
                     "Auxiliar no planejamento de novas funcionalidades.",
@@ -92,28 +108,33 @@ namespace Curriculum.Domain
             experiences.Add(new Experience
             {
                 Name = "WorldCellos",
-                Role = "Desenvolvedor/Sócio",
+                Role = new Description(
+                    "Desenvolvedor / Sócio",
+                    "Developer / Partner"),
                 StartDate = new DateTime(2013, 10, 01),
                 ExitDate = new DateTime(2015, 11, 01),
-                Description = "Foi uma pequena consultoria de 4 pessoas, entrei como júnior e fui convidado a virar sócio. Passei a ter mais responsabilidade, como designar tarefas e gerenciar o cronograma dos projetos",
+                Description = new Description(
+                    "Foi uma pequena consultoria de 4 pessoas, entrei como júnior e fui convidado a virar sócio. Passei a ter mais responsabilidade, como designar tarefas e gerenciar o cronograma dos projetos",
+                    "It was a small consultancy with 4 people, I started as a Junior developer and was invited to work as a parter. I started managing task assignements and projects schedules"),
                 Activies = new string[]{
-                    "Realizar manutenção e desenvolvimento no produto da empresa.",
-                    "Auxiliar no planejamento de novas funcionalidades.",
-                    "Realizar integrações entre sistemas.",
-                    "Desenvolvimento de testes unitários."
+                    "Realizar manutenção e desenvolvimento de varios projetos.",
+                    "Gerenciar as tarefas do time.",
+                    "Gerenciar cronograma de entrega dos projetos.",
                 },
                 Technologies = new string[]{
                     "c#", "c", "sql server", "MVC", "arduino"
                 }
             });
-            
+
             experiences.Add(new Experience
             {
                 Name = "Secretária Municipal do Esporte e lazer",
-                Role = "Estágiario",
+                Role = new Description("Estágiario", "Intern"),
                 StartDate = new DateTime(2012, 12, 01),
                 ExitDate = new DateTime(2013, 10, 01),
-                Description = "Inicio da minha carreira, trabalhei em diversos projetos da intranet da subprefeitura",
+                Description = new Description(
+                    "Inicio da minha carreira, trabalhei em diversos projetos da intranet da subprefeitura",
+                    "In the beginning of my career, worked in diverse internal projects to facilitate and organize the work in the secretary"),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento no produto da empresa.",
                     "Auxiliar no planejamento de novas funcionalidades.",
@@ -124,7 +145,7 @@ namespace Curriculum.Domain
                     "VB.NET", "postgreSQL", "Web Forms", "ADO.NET"
                 }
             });
-            
+
             return experiences;
         }
 
@@ -175,7 +196,7 @@ namespace Curriculum.Domain
                 Name = "Agile",
                 Type = SkillType.Specific
             });
-            
+
             skills.Add(new Skill
             {
                 Description = "",

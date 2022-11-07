@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager NavManager
 
 @if (cv == null)
 {
@@ -18,7 +19,7 @@ else
             <div class="row">
                 <span>@(person.Address.Street), @(person.Address.Number)</span><br />
                 <span>@(person.Address.City) - @(person.Address.PostalCode)</span><br />
-                <span>@(person.Age) anos, @(person.MaritalStatus)</span>
+                <span>@(person.Age) @(ageText), @(person.MaritalStatus)</span>
                 <span class="fw-bold">
                     <i class="bi bi-phone-fill"></i>
                     @(person.Contact.PhoneNumber)
@@ -32,7 +33,7 @@ else
     </div>
     <div class="row">
         <div class="col-8">
-            <span class="subtitle">Experiência Profissional</span>
+            <span class="subtitle">@(expirienceText)</span>
             @foreach (var company in cv.Experiences)
             {
                 <div class="subcontainer">
@@ -48,32 +49,38 @@ else
                 </div>
             }
 
-            <span class="subtitle">Educação</span>
-            @foreach (var company in cv.Educations)
+            <span class="subtitle">@(educationText)</span>
+            @foreach (var education in cv.Educations)
             {
                 <div class="subcontainer">
 
-                    <span class="company-name">@(company.Institution)</span>,&nbsp;<span
-                class="subtext">@(company.Course)</span>
+                    <span class="company-name">@(education.Institution)</span>,&nbsp;<span
+                class="subtext">@(education.Course)</span>
 
                 </div>
             }
         </div>
         <div class="col-4">
-            <span class="subtitle">Habilidades</span>
+            <span class="subtitle">@(skillsText)</span>
 
             @foreach (var skill in cv.Skills.OrderBy(x => x.Type))
             {
                 <div>
-                    <span>@(skill.Name.ToUpper())</span> <br>
-                   
+                    <span>@(skill.Name.ToUpper())</span> <span>@(skill.Grade)</span> <br>
+
                     <div class="progress">
-                        <div style="width: @(skill.Grade)%; background-color: var(--accent-color)" class="progress-bar" role="progressbar" 
-                        aria-valuenow="@(skill.Grade)" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div style="width: @(skill.Grade)%; background-color: var(--accent-color)" class="progress-bar"
+                    role="progressbar" aria-valuenow="@(skill.Grade)" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             }
         </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center footer">
+            <span class="subtext">@DateTime.Today.ToString("Y")</span>
+        </div>
+
     </div>
 }
 
@@ -81,8 +88,23 @@ else
 @code {
     Curriculum cv;
     Person person;
+
+    private string ageText = "anos";
+    private string expirienceText = "Experiência Profissional";
+    private string educationText = "Educação";
+    private string skillsText = "Habilidades";
     protected override void OnInitialized()
     {
+        var useEnglish = NavManager.Uri.Contains("lang=en");
+        if(useEnglish)
+        {
+            ageText = "years old";
+            expirienceText = "Experience";
+            educationText = "Education";
+            skillsText = "Skills";
+            System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.CreateSpecificCulture("en");
+        }
+        
         cv = Builder.Build();
         person = cv.Owner;
 

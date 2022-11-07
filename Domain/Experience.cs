@@ -5,7 +5,7 @@ namespace Curriculum.Domain
     public class Experience
     {
         public string Name { get; set; }
-        public string Role { get; set; }
+        public Description Role { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? ExitDate { get; set; }
