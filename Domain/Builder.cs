@@ -65,6 +65,25 @@ namespace Curriculum.Domain
             var experiences = new List<Experience>();
             experiences.Add(new Experience
             {
+                Name = "Logstore",
+                Role = new Description("Desenvolvedor Backend Sênior", "Senior Backend developer"),
+                StartDate = new DateTime(2021, 08, 01),
+                // ExitDate = new DateTime(2021, 07, 01),
+                Description = new Description(
+@"Startup voltada para o setor de logistica. Aprendi muito em um ambiente com grande foco na qualidede do software em um sistema orientado a eventos com alto throughput",
+@"Small startup with a product. Learned a lot in an environment with high focus in quality and the system throughput using an event oriented architecture"),
+                Activies = new string[]{
+                    "Realizar manutenção e desenvolvimento no produto da empresa.",
+                    "Realizar integrações entre sistemas.",
+                    "Automatização de processos internos.",
+                    "Atualização dos frameworks do produto."
+                },
+                Technologies = new string[]{
+                    ".net", "angular", "aws", "redis", "aws sqs", "docker"
+                }
+            });
+            experiences.Add(new Experience
+            {
                 Name = "Confitec",
                 Role = new Description("Desenvolvedor Fullstack Sênior", "Senior Fullstack developer"),
                 StartDate = new DateTime(2020, 03, 01),
@@ -169,7 +188,7 @@ namespace Curriculum.Domain
             skills.Add(new Skill
             {
                 Description = "",
-                Grade = 65,
+                Grade = 58,
                 Name = "Angular",
                 Type = SkillType.Specific
             });
@@ -177,7 +196,7 @@ namespace Curriculum.Domain
             skills.Add(new Skill
             {
                 Description = "",
-                Grade = 70,
+                Grade = 77,
                 Name = "Design Patterns",
                 Type = SkillType.Specific
             });
@@ -185,7 +204,7 @@ namespace Curriculum.Domain
             skills.Add(new Skill
             {
                 Description = "",
-                Grade = 75,
+                Grade = 76,
                 Name = "Arquitetura de software",
                 Type = SkillType.Specific
             });

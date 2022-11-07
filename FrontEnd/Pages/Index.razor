@@ -41,7 +41,7 @@ else
                     <span class="company-name">@(company.Name)</span>,&nbsp;<span
                 class="subtext">@(company.Role)</span>&nbsp;<br />
                     <span class="period">
-                        @(company.StartDate.Year) - @(company.ExitDate.HasValue? company.ExitDate.Value.Year : "atual")
+                        @(company.StartDate.Year) - @(company.ExitDate.HasValue? company.ExitDate.Value.Year : "current")
                     </span> <br />
                     <span class="subtext">@(company.Description)</span>
                     <br><span class="fw-bold subtext">Stack: </span>
