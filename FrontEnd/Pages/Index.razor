@@ -37,11 +37,10 @@ else
             @foreach (var company in cv.Experiences)
             {
                 <div class="subcontainer">
-
-                    <span class="company-name">@(company.Name)</span>,&nbsp;<span
-                class="subtext">@(company.Role)</span>&nbsp;<br />
+                    <span class="company-name">@(company.Name)</span>,&nbsp;
+                    <span class="subtext">@(company.Role)</span>&nbsp;<br />
                     <span class="period">
-                        @(company.StartDate.Year) - @(company.ExitDate.HasValue? company.ExitDate.Value.Year : "current")
+                        @(company.StartDate.Year) - @(company.ExitDate.HasValue? company.ExitDate.Value.Year : currentText)
                     </span> <br />
                     <span class="subtext">@(company.Description)</span>
                     <br><span class="fw-bold subtext">Stack: </span>
@@ -54,8 +53,11 @@ else
             {
                 <div class="subcontainer">
 
-                    <span class="company-name">@(education.Institution)</span>,&nbsp;<span
-                class="subtext">@(education.Course)</span>
+                    <span class="company-name">@(education.Institution)</span>,&nbsp;
+                     <span class="period">
+                        @(education.Start.Year) - @(education.End.HasValue? education.End.Value.Year : currentText)
+                    </span><br/>
+                    <span class="subtext">@(education.Course)</span>
 
                 </div>
             }
@@ -66,7 +68,7 @@ else
             @foreach (var skill in cv.Skills.OrderBy(x => x.Type))
             {
                 <div>
-                    <span>@(skill.Name.ToUpper())</span> <span>@(skill.Grade)</span> <br>
+                    <span>@(skill.Name.ToString().ToUpper())</span> <span>@(skill.Grade)</span> <br>
 
                     <div class="progress">
                         <div style="width: @(skill.Grade)%; background-color: var(--accent-color)" class="progress-bar"
@@ -76,11 +78,10 @@ else
             }
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12 text-center footer">
             <span class="subtext">@DateTime.Today.ToString("Y")</span>
         </div>
-
     </div>
 }
 
@@ -93,6 +94,7 @@ else
     private string expirienceText = "Experiência Profissional";
     private string educationText = "Educação";
     private string skillsText = "Habilidades";
+    private string currentText = "atual";
     protected override void OnInitialized()
     {
         var useEnglish = NavManager.Uri.Contains("lang=en");
@@ -100,9 +102,14 @@ else
         {
             ageText = "years old";
             expirienceText = "Experience";
-            educationText = "Education";
+            educationText = "Academic Background";
             skillsText = "Skills";
-            System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.CreateSpecificCulture("en");
+            currentText = "to present";
+            Description.CURRENT_CULTURE = "en";
+        }
+        else
+        {
+            Description.CURRENT_CULTURE = "pt";
         }
         
         cv = Builder.Build();

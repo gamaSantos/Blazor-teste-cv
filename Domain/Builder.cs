@@ -20,8 +20,10 @@ namespace Curriculum.Domain
             var ed = new List<Educations>();
             ed.Add(new Educations()
             {
-                Course = "Análise e Desenvolvimento de Sistemas",
-                Institution = "Fatec Zona Sul"
+                Course = new Description("Análise e Desenvolvimento de Sistemas", "System Analyst and Developer"),
+                Institution = "Fatec Zona Sul",
+                Start = new DateTime(2011, 02, 1),
+                End = new DateTime(2015, 12, 01)
             });
             return ed;
         }
@@ -71,7 +73,7 @@ namespace Curriculum.Domain
                 // ExitDate = new DateTime(2021, 07, 01),
                 Description = new Description(
 @"Startup voltada para o setor de logistica. Aprendi muito em um ambiente com grande foco na qualidede do software em um sistema orientado a eventos com alto throughput",
-@"Small startup with a product. Learned a lot in an environment with high focus in quality and the system throughput using an event oriented architecture"),
+@"Small startup with a product in the logistics industry. Learned a lot in an environment with high focus on quality and the system throughput using an event oriented architecture"),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento no produto da empresa.",
                     "Realizar integrações entre sistemas.",
@@ -90,7 +92,7 @@ namespace Curriculum.Domain
                 ExitDate = new DateTime(2021, 07, 01),
                 Description = new Description(
 @"Empresa voltada ao mercado de seguros. Tive a oportunidade de me familiarizar e aperfeiçoar em diversos padrões de mercado como DDD, CQRS e mediators além de obter mais experiencia com sistemas distribuidos",
-@"Company is focused in the insurance market. Had the opportunity to improve in many patterns like CQRS, mediator and DDD whiling acquired experience with distributed systems."),
+@"Company is focused in the insurance market. Had the opportunity to improve in many patterns such as CQRS, mediator and DDD while acquiring experience with distributed systems."),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento no produto da empresa.",
                     "Realizar integrações entre sistemas.",
@@ -112,7 +114,7 @@ namespace Curriculum.Domain
                 ExitDate = new DateTime(2020, 03, 01),
                 Description = new Description(
                     "Trabalhei em 2 projetos para a indústria farmacêutica, em um deles pude trabalhar desde a concepção e adquirir maior experiência com DDD e arquitetura de software. Passamos por uma transição para o modelo ágil o que me proporcionou uma boa experiência com scrum.",
-                    "I Worked in two projects to the pharma industry, in the latest, had the opportunity to create the backend from scratch with the tech lead. We transition to a agile method in the company, what gave me solid understing of the culture"),
+                    "I Worked on two projects in the pharma industry, in the latter, had the opportunity to create the backend from scratch with the tech lead. We transitioned to a agile method in the company, which gave us a solid understing of the culture"),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento no produto da empresa.",
                     "Auxiliar no planejamento de novas funcionalidades.",
@@ -134,7 +136,7 @@ namespace Curriculum.Domain
                 ExitDate = new DateTime(2015, 11, 01),
                 Description = new Description(
                     "Foi uma pequena consultoria de 4 pessoas, entrei como júnior e fui convidado a virar sócio. Passei a ter mais responsabilidade, como designar tarefas e gerenciar o cronograma dos projetos",
-                    "It was a small consultancy with 4 people, I started as a Junior developer and was invited to work as a parter. I started managing task assignements and projects schedules"),
+                    "It was a small consultancy with 4 people, I started as a Junior developer and was invited to became a parter. I managed task assignements and projects schedules for the duration of the period that I worked there."),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento de varios projetos.",
                     "Gerenciar as tarefas do time.",
@@ -153,7 +155,7 @@ namespace Curriculum.Domain
                 ExitDate = new DateTime(2013, 10, 01),
                 Description = new Description(
                     "Inicio da minha carreira, trabalhei em diversos projetos da intranet da subprefeitura",
-                    "In the beginning of my career, worked in diverse internal projects to facilitate and organize the work in the secretary"),
+                    "At the beginning of my career, worked in diverse internal projects to facilitate and organize the work at the secretary"),
                 Activies = new string[]{
                     "Realizar manutenção e desenvolvimento no produto da empresa.",
                     "Auxiliar no planejamento de novas funcionalidades.",
@@ -175,21 +177,21 @@ namespace Curriculum.Domain
             {
                 Description = "",
                 Grade = 85,
-                Name = ".net",
+                Name = new Description(".net", ".net"),
                 Type = SkillType.Specific
             });
             skills.Add(new Skill
             {
                 Description = "",
                 Grade = 80,
-                Name = "ASP.NET",
+                Name = new Description("ASP.NET", "ASP.NET"),
                 Type = SkillType.Specific
             });
             skills.Add(new Skill
             {
                 Description = "",
                 Grade = 58,
-                Name = "Angular",
+                Name = new Description("Angular", "Angular"),
                 Type = SkillType.Specific
             });
 
@@ -197,7 +199,7 @@ namespace Curriculum.Domain
             {
                 Description = "",
                 Grade = 77,
-                Name = "Design Patterns",
+                Name = new Description("Design Patterns", "Design Patterns"),
                 Type = SkillType.Specific
             });
 
@@ -205,14 +207,14 @@ namespace Curriculum.Domain
             {
                 Description = "",
                 Grade = 76,
-                Name = "Arquitetura de software",
+                Name = new Description("Arquitetura de software", "Software architecture"),
                 Type = SkillType.Specific
             });
             skills.Add(new Skill
             {
                 Description = "",
                 Grade = 70,
-                Name = "Agile",
+                Name = new Description("Agile", "Agile"),
                 Type = SkillType.Specific
             });
 
@@ -220,14 +222,14 @@ namespace Curriculum.Domain
             {
                 Description = "",
                 Grade = 70,
-                Name = "Bancos Relacionais",
+                Name = new Description("Bancos Relacionais", "Relational Database"),
                 Type = SkillType.Specific
             });
             skills.Add(new Skill
             {
                 Description = "",
                 Grade = 62,
-                Name = "Bancos NoSQL",
+                Name = new Description("Bancos NoSQL", "NoSQL"),
                 Type = SkillType.Specific
             });
 
@@ -235,28 +237,28 @@ namespace Curriculum.Domain
             {
                 Description = "",
                 Grade = 40,
-                Name = "Containers",
+                Name = new Description("Containers", "Containers"),
                 Type = SkillType.Specific
             });
             skills.Add(new Skill
             {
                 Description = "",
                 Grade = 60,
-                Name = "Aws",
+                Name = new Description("Aws", "Aws"),
                 Type = SkillType.Specific
             });
             skills.Add(new Skill
             {
                 Description = "",
                 Grade = 50,
-                Name = "Azure",
+                Name = new Description("Azure", "Azure"),
                 Type = SkillType.Specific
             });
             skills.Add(new Skill
             {
                 Description = "",
-                Grade = 77,
-                Name = "Inglês",
+                Grade = 88,
+                Name = new Description("Inglês", "English"),
                 Type = SkillType.Soft
             });
             return skills;
